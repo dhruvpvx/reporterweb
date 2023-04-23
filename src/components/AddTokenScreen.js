@@ -78,7 +78,11 @@ export default function AddTokenScreen({ setUser, user }) {
             />
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link
+                  target="_blank"
+                  href="https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/How-to-create-a-GitHub-Personal-Access-Token-example"
+                  variant="body2"
+                >
                   Generate Github Personal Access Token
                 </Link>
               </Grid>
