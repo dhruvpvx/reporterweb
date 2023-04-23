@@ -1,8 +1,10 @@
-import { Box, Button, Container, TextField } from '@mui/material';
+import { Box, Button, Container, Link, TextField } from '@mui/material';
 import React, { useMemo } from 'react';
 import { useLocalState } from '../utils';
 import SearchDropDown from './SearchDropDown';
 import Github from '../github/Github';
+import { GitHub as GitHubIcon } from '@mui/icons-material';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 const durations = Array.from({ length: 12 }, (v, i) => {
   const date = new Date(new Date().setDate(new Date().getDate() - i)).toISOString().split('T')[0];
@@ -68,8 +70,28 @@ const GenerateReportScreen = ({ user }) => {
         flexDirection: 'column',
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <h1>Hello {user?.login}</h1>
+        <PowerSettingsNewIcon
+          style={{
+            cursor: 'pointer',
+            marginLeft: 10,
+          }}
+          color="error"
+          onClick={() => {
+            if (window.confirm('Are you sure you want to logout?')) {
+              localStorage.clear();
+              window.location.href = '/';
+            }
+          }}
+        />
       </Box>
       <Box display="flex" flexDirection="row">
         <SearchDropDown
@@ -108,6 +130,27 @@ const GenerateReportScreen = ({ user }) => {
         rows={4}
         style={{ marginTop: 100, width: 300 }}
       />
+      <Link target="_blank" href="https://github.com/dhruvpvx/reporterweb">
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 10,
+            cursor: 'pointer',
+          }}
+        >
+          <GitHubIcon />
+          <h6
+            style={{
+              marginLeft: 5,
+            }}
+          >
+            2023
+          </h6>
+        </Box>
+      </Link>
     </Container>
   );
 };
